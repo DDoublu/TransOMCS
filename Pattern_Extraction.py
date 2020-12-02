@@ -449,6 +449,12 @@ selected_relations = ['AtLocation', 'CapableOf', 'Causes', 'CausesDesire', 'Crea
 discourse_relations = ['Precedence', 'Succession', 'Synchronous', 'Reason', 'Result', 'Condition', 'Contrast',
                        'Concession', 'Conjunction', 'Instantiation', 'Restatement', 'Alternative', 'ChosenAlternative',
                        'Exception']
+# 之前，之后，同步，原因，结果，条件，对比
+# 让步，结合，实例，重述，可替代，可替代中被选择的
+# 例外
+# 参考的是 The penn discourse treebank 2.0 annotation manual
+# https://catalog.ldc.upenn.edu/docs/LDC2008T05/manual/pdtb-annotation-manual.pdf
+
 
 with open('node_matches.json', 'r') as f:
     sample_data = json.load(f)
