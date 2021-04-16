@@ -456,7 +456,7 @@ discourse_relations = ['Precedence', 'Succession', 'Synchronous', 'Reason', 'Res
 # https://catalog.ldc.upenn.edu/docs/LDC2008T05/manual/pdtb-annotation-manual.pdf # 4 Senses
 
 
-with open('node_matches.json', 'r') as f:
+with open('./Data/TransOMCS_matched_data/node_matches.json', 'r') as f:
     sample_data = json.load(f)
 nlp = spacy.load('en')
 
@@ -482,7 +482,7 @@ for tmp_r in sample_data:
     raw_eventuality_patterns[tmp_r] = selected_patterns
 
 
-with open('edge_matches.json', 'r') as f:
+with open('./Data/TransOMCS_matched_data/edge_matches.json', 'r') as f:
     sample_edge_data = json.load(f)
 nlp = spacy.load('en')
 
@@ -540,7 +540,7 @@ eventuality_patterns = new_eventuality_patterns
 edge_patterns = new_edge_patterns
 
 
-with open('lemmatized_commonsense_knowledge.json', 'r') as f:
+with open('./Data/TransOMCS_matched_data/lemmatized_commonsense_knowledge.json', 'r') as f:
     lemmatized_commonsense_knowledge = json.load(f)
 
 
@@ -631,7 +631,7 @@ for r in overall_pattern_by_score:
             tmp_selected_pattern.append(pattern)
     selected_patterns[r] = tmp_selected_pattern
 
-with open('selected_patterns.json', 'w') as f:
+with open('./Data/TransOMCS_matched_data/selected_patterns.json', 'w') as f:
     json.dump(selected_patterns, f)
 
 print('end')
