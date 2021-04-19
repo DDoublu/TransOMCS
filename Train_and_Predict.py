@@ -1,6 +1,7 @@
 from util import *
 import torch
-from pytorch_transformers import *
+# from pytorch_transformers import *
+from transformers import *
 import logging
 import argparse
 from torch.nn.utils.rnn import pad_sequence
@@ -373,7 +374,7 @@ if not os.path.isdir('models'):
     os.mkdir('models')
 
 for r in selected_relations:
-    current_data = DataLoader('ranking_dataset.json', r)
+    current_data = DataLoader('./Data/ranking_dataset.json/ranking_dataset.json', r)
     print('Finish loading data')
 
     test(current_model, current_data.tensorized_test)
@@ -400,7 +401,7 @@ if not os.path.isdir('prediction'):
 # This process might be slow due to the huge dataset scale.
 for r in selected_relations:
     print('Start to load data...')
-    data_for_prediction = DataLoaderPredict('extracted_knowledge/' + r + '.json')
+    data_for_prediction = DataLoaderPredict('./Data/gen/extracted_knowledge/' + r + '.json')
     print('Finish loading data...')
     current_model = CommonsenseRelationClassifier.from_pretrained('bert-base-uncased')
     current_model.load_state_dict(torch.load('models/' + r + '.pth'))

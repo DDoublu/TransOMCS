@@ -631,7 +631,7 @@ for r in overall_pattern_by_score:
             tmp_selected_pattern.append(pattern)
     selected_patterns[r] = tmp_selected_pattern
 
-with open('./Data/TransOMCS_matched_data/selected_patterns.json', 'w') as f:
+with open('./Data/gen/selected_patterns.json', 'w') as f:
     json.dump(selected_patterns, f)
 
 print('end')

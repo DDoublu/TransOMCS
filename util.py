@@ -392,7 +392,7 @@ def merge_extracted_knowledge_from_multi_core(all_extracted_knowledge):
 nlp = spacy.load('en_core_web_sm')
 
 try:
-    with open('selected_patterns.json', 'r') as f:
+    with open('./Data/gen/selected_patterns.json', 'r') as f:
         selected_patterns = json.load(f)
         print('Finish loading the patterns')
 except:

@@ -1,6 +1,6 @@
 from util import *
 
-KG_path = 'KG_v0.1.0.db'
+KG_path = './Data/ASER/demo/KG_v0.1.0.db'
 
 st = time.time()
 kg_conn = KG_Connection(db_path=KG_path, mode='memory')
@@ -180,7 +180,7 @@ for r in filtered_knowledge:
         else:
             matched_count += 1
             tmp_dataset.append(tmp_example)
-    with open('extracted_knowledge/'+r+'.json', 'w') as f:
+    with open('./Data/gen/extracted_knowledge/'+r+'.json', 'w') as f:
         json.dump(tmp_dataset, f)
 
 print('end')
