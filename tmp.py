@@ -1,8 +1,20 @@
-import matplotlib
+import ujson as json
 
-matplotlib.use('tkagg')  # Must be before importing matplotlib.pyplot or pylab!
-import matplotlib.pyplot as plt
+with open("./Data/gen/extracted_knowledge/UsedFor.json", 'r') as f:
+    all = json.load(f)
 
-fig = plt.figure()
-plt.plot(range(10))
-plt.show()
+print(len(all))
+
+tmp = list()
+count = 0
+for i, item in enumerate(all):
+    tmp.append(item)
+    if i % 400 == 399:
+        with open("./Data/gen/extracted_knowledge/UsedFor"+ str(count) +".json", 'w') as f:
+            json.dump(tmp, f)
+        count += 1
+        tmp = list()
+if len(tmp) != 0:
+    with open("./Data/gen/extracted_knowledge/UsedFor"+ str(count) +".json", 'w') as f:
+        json.dump(tmp, f)
+
