@@ -15,9 +15,12 @@ Connective_dict = {'Precedence': 'before', 'Succession': 'after', 'Synchronous':
                    'Conjunction': 'and', 'Instantiation': 'for example', 'Restatement': 'in other words',
                    'Alternative': 'or', 'ChosenAlternative': 'instead', 'Exception': 'except'}
 
-all_relations = ['AtLocation', 'CapableOf', 'Causes', 'CausesDesire', 'CreatedBy', 'DefinedAs', 'Desires', 'HasA',
-                 'HasPrerequisite', 'HasProperty', 'HasSubevent', 'HasFirstSubevent', 'HasLastSubevent', 'InstanceOf',
-                 'MadeOf', 'MotivatedByGoal', 'PartOf', 'ReceivesAction', 'UsedFor']
+all_relations = ['LocatedNear']
+
+
+# all_relations = ['CausesDesire', 'CreatedBy', 'DefinedAs', 'HasA',
+#                   'HasProperty', 'HasFirstSubevent', 'InstanceOf',
+#                    'ReceivesAction', 'UsedFor']
 
 
 def get_adj_matrix(tmp_tokenized_sentence, tmp_graph, max_length):
@@ -341,7 +344,7 @@ def predict(model, data_for_predict, relation):
 parser = argparse.ArgumentParser()
 
 ## Required parameters
-parser.add_argument("--gpu", default='0', type=str, required=False,
+parser.add_argument("--gpu", default='3', type=str, required=False,
                     help="choose which gpu to use")
 parser.add_argument("--model", default='graph', type=str, required=False,
                     help="choose the model to test")
@@ -404,7 +407,7 @@ for r in selected_relations:
     data_for_prediction = DataLoaderPredict('./Data/gen/extracted_knowledge/' + r + '.json')
     print('Finish loading data...')
     current_model = CommonsenseRelationClassifier.from_pretrained('bert-base-uncased')
-    current_model.load_state_dict(torch.load('models/' + r + '.pth'))
+    current_model.load_state_dict(torch.load('./models/' + r + '.pth'))
     current_model.to(device)
     print('We are working on relation:', r)
     for i in range(data_for_prediction.number_of_trunks):
