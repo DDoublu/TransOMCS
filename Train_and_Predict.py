@@ -21,13 +21,10 @@ Connective_dict = {'Precedence': 'before', 'Succession': 'after', 'Synchronous':
 #                  'HasPrerequisite', 'HasProperty', 'HasSubevent', 'HasFirstSubevent', 'HasLastSubevent',
 #                  'InstanceOf', 'MadeOf', 'MotivatedByGoal', 'PartOf', 'ReceivesAction', 'UsedFor']
 
-#
-# 9-'ReceivesAction', 'UsedFor'
-# all_relations = ['CausesDesire', 'CreatedBy', 'DefinedAs', 'HasA', 'HasProperty', 'HasFirstSubevent',
-#                  'InstanceOf']
 
-all_relations = ['ReceivesAction', 'UsedFor']
-
+# 9
+all_relations = ['CausesDesire', 'CreatedBy', 'DefinedAs', 'HasA', 'HasProperty', 'HasFirstSubevent',
+                 'InstanceOf', 'ReceivesAction', 'UsedFor']
 
 
 def get_adj_matrix(tmp_tokenized_sentence, tmp_graph, max_length):
@@ -381,31 +378,31 @@ performance_dict = dict()
 selected_relations = all_relations
 
 
-# if not os.path.isdir('models'):
-#     os.mkdir('models')
-#
-# for r in selected_relations:
-#     current_data = DataLoader('./Data/ranking_dataset.json/ranking_dataset.json', r)
-#     print('Finish loading data')
-#
-#     test(current_model, current_data.tensorized_test)
-#
-#     best_performance = 0
-#     tmp_lr = args.lr
-#     current_data.random_sample_train_set()
-#     for i in range(50):
-#         if i % 5 == 0:
-#             test_optimizer = torch.optim.SGD(current_model.parameters(), lr=tmp_lr)
-#             tmp_lr = tmp_lr * args.lrdecay
-#         print('Current Iteration:', i + 1, '|', 'Relation:', r, '|',
-#               'Current best performance:', best_performance)
-#         train(current_model, current_data.tensorized_train)
-#         tmp_performance = test(current_model, current_data.tensorized_test)
-#         if tmp_performance >= best_performance:
-#             best_performance = tmp_performance
-#             print('We are saving the new best model')
-#             torch.save(current_model.state_dict(), 'models/' + r + '.pth')
-#     performance_dict[r] = best_performance
+if not os.path.isdir('models'):
+    os.mkdir('models')
+
+for r in selected_relations:
+    current_data = DataLoader('./Data/ranking_dataset.json/ranking_dataset.json', r)
+    print('Finish loading data')
+
+    test(current_model, current_data.tensorized_test)
+
+    best_performance = 0
+    tmp_lr = args.lr
+    current_data.random_sample_train_set()
+    for i in range(50):
+        if i % 5 == 0:
+            test_optimizer = torch.optim.SGD(current_model.parameters(), lr=tmp_lr)
+            tmp_lr = tmp_lr * args.lrdecay
+        print('Current Iteration:', i + 1, '|', 'Relation:', r, '|',
+              'Current best performance:', best_performance)
+        train(current_model, current_data.tensorized_train)
+        tmp_performance = test(current_model, current_data.tensorized_test)
+        if tmp_performance >= best_performance:
+            best_performance = tmp_performance
+            print('We are saving the new best model')
+            torch.save(current_model.state_dict(), 'models/' + r + '.pth')
+    performance_dict[r] = best_performance
 
 
 if not os.path.isdir('prediction'):
