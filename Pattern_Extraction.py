@@ -427,6 +427,11 @@ def compute_length_score(tmp_pattern):
 
 
 def find_discourse_relation(tmp_pattern):
+    r"""
+    判断tmp_pattern是否存在discourse_relations中的关系（即二者是否有交集）
+    :param tmp_pattern:
+    :return: 有交集返回True，无交集返回False
+    """
     tmp_status = False
     for discourse_r in discourse_relations:
         if discourse_r in tmp_pattern:
